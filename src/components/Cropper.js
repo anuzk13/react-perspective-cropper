@@ -1,5 +1,5 @@
 import React from 'react'
-import { OpenCvProvider } from 'opencv-react'
+import { OpenCvProvider } from '../lib/OpenCvProvider'
 import Canvas from '../lib/Canvas'
 import T from 'prop-types'
 

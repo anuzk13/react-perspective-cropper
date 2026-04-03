@@ -6,7 +6,7 @@ import React, {
   useState,
   Fragment
 } from 'react'
-import { useOpenCv } from 'opencv-react'
+import { useOpenCv } from './OpenCvProvider'
 import T from 'prop-types'
 
 import { calcDims, readFile, isCrossOriginURL } from '../lib/utils'
@@ -101,7 +101,7 @@ const Canvas = ({
         canvasRef.current = document.createElement('canvas')
         canvasRef.current.width = img.width
         canvasRef.current.height = img.height
-        const ctx = canvasRef.current.getContext('2d')
+        const ctx = canvasRef.current.getContext('2d', { willReadFrequently: true })
         ctx.drawImage(img, 0, 0)
         imageDimensions.width = canvasRef.current.width
         imageDimensions.height = canvasRef.current.height
