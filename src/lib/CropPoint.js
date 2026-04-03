@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useRef } from 'react'
 import Draggable from 'react-draggable'
 import T from 'prop-types'
 
@@ -52,8 +52,11 @@ const CropPoint = ({
     [externalOnDrag, cropPoints]
   )
 
+  const nodeRef = useRef(null)
+
   return (
     <Draggable
+      nodeRef={nodeRef}
       bounds={bounds}
       defaultPosition={defaultPosition}
       position={{
@@ -63,7 +66,7 @@ const CropPoint = ({
       onDrag={onDrag}
       onStop={onStop}
     >
-      <div style={buildCropPointStyle(pointSize, pointBgColor, pointBorder)} />
+      <div ref={nodeRef} style={buildCropPointStyle(pointSize, pointBgColor, pointBorder)} />
     </Draggable>
   )
 }
