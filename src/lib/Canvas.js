@@ -33,7 +33,8 @@ const Canvas = ({
   pointBorder,
   lineColor,
   maxWidth,
-  maxHeight
+  maxHeight,
+  cropPoints: initialCropPoints
 }) => {
   const { loaded: cvLoaded, cv } = useOpenCv()
   const canvasRef = useRef()
@@ -191,7 +192,11 @@ const Canvas = ({
       const src = await readFile(image)
       await createCanvas(src)
       showPreview()
-      detectContours()
+      if (initialCropPoints) {
+        setCropPoints(initialCropPoints)
+      } else {
+        detectContours()
+      }
       setLoading(false)
     }
 
